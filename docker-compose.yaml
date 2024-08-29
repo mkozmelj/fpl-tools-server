@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis-server
+    ports:
+      - '6379:6379'
+    networks:
+      - app-network
+
+  fpl-tools-server:
+    build: .
+    image: mkozmelj32/fpl-tools-server
+    container_name: fpl-tools-server
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - API_URL=https://fantasy.premierleague.com/api
+      - PORT=3000
+      - TIMEOUT=10000
+      - REDIS_PASSWORD=redispassword
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
