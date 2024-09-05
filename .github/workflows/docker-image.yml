@@ -24,9 +24,9 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Install dependencies
-      run: yarn
+    - name: Build Docker image 
+      run: docker build -t mkozmelj32/fpl-tools-server .
 
-    - name: Build Docker image and push to the registry
-      run: yarn docker:push
+    - name: Push to the registry
+      run: docker push mkozmelj32/fpl-tools-server
 
