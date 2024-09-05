@@ -13,7 +13,7 @@ RUN yarn
 COPY . .
 
 # Step 5: Build the TypeScript code
-RUN yarn run build
+RUN yarn build
 
 # Step 6: Expose the port the app runs on
 EXPOSE 3000
