@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main  # Adjust this to your main branch name if different
+      - main # Adjust this to your main branch name if different
 
 jobs:
   build:
@@ -12,21 +12,20 @@ jobs:
       name: production
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Print Environment Variables
-      run: env
+      - name: Print Environment Variables
+        run: env
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build Docker image 
-      run: docker build -t mkozmelj32/fpl-tools-server .
+      - name: Build Docker image
+        run: docker build -t mkozmelj32/fpl-tools-server .
 
-    - name: Push to the registry
-      run: docker push mkozmelj32/fpl-tools-server
-
+      - name: Push to the registry
+        run: docker push mkozmelj32/fpl-tools-server

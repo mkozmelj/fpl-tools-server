@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier --write \"**/*.{js,ts,json,md}\"",
     "build": "tsc",
-    "docker:build": "docker build -t mkozmelj32/fpl-tools-server ."
+    "docker:build": "docker build --platform linux/arm64/v8 -t mkozmelj32/fpl-tools-server .",
+    "docker:push": "yarn docker:build && docker push mkozmelj32/fpl-tools-server"
   },
   "dependencies": {
     "axios": "^1.7.5",
